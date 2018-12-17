@@ -81,8 +81,12 @@ public class BookRestController {
         Optional<Book> optional = books.stream()
                 .filter(book -> book.getId().compareTo(id) == 0)
                 .findAny();
-        return optional
-                .map(book -> new ResponseEntity<>(HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        if (optional.isPresent()) {
+            Book book = optional.get();
+            books.remove(book);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
