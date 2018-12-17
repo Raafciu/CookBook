@@ -1,4 +1,4 @@
-package pl.com.redpike.cookbookserver.util;
+package pl.com.redpike.cookbook.util;
 
 public class RestUtil {
 

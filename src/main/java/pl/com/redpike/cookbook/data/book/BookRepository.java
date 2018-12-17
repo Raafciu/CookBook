@@ -1,4 +1,4 @@
-package pl.com.redpike.cookbookserver.data.book;
+package pl.com.redpike.cookbook.data.book;
 
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
