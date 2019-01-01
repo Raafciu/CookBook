@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.config.json",
+    "start": "ng serve",
     "build": "ng build --prod --base-href /cookbook/",
     "buildWatch": "ng build --aot --output-path=../target/cookbook/WEB-INF/classes/static --base-href /cookbook/ --watch",
     "test": "ng test",

@@ -10,6 +10,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {BookService} from "./service/book.service";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
+import 'hammerjs';
+
 @NgModule({
   declarations: [
     AppComponent,

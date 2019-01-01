@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(RestUtil.BOOK_API)
-@CrossOrigin(origins = RestUtil.ANGULAR_HOST)
+@RequestMapping({RestUtil.BOOK_API, RestUtil.BOOK_DEV_API})
+@CrossOrigin(origins = {RestUtil.ANGULAR_HOST, RestUtil.TOMCAT_HOST})
 public class BookRestController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BookRestController.class);
