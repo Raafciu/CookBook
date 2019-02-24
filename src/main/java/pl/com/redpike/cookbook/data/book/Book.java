@@ -1,55 +1,31 @@
 package pl.com.redpike.cookbook.data.book;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.Objects;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "book")
 public class Book {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name = "author")
     private String author;
+
+    @Column(name = "title")
     private String title;
+
+    @Column(name = "pages")
     private String pages;
-
-    public Book() {
-    }
-
-    public Book(Integer id, String author, String title, String pages) {
-        this.id = id;
-        this.author = author;
-        this.title = title;
-        this.pages = pages;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getPages() {
-        return pages;
-    }
-
-    public void setPages(String pages) {
-        this.pages = pages;
-    }
 
     @Override
     public boolean equals(Object o) {

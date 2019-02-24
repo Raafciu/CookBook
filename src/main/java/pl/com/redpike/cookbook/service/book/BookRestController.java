@@ -1,11 +1,12 @@
 package pl.com.redpike.cookbook.service.book;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.com.redpike.cookbook.data.book.Book;
+import pl.com.redpike.cookbook.data.book.BookRepository;
 import pl.com.redpike.cookbook.util.RestUtil;
 
 import java.util.ArrayList;
@@ -13,11 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping({RestUtil.BOOK_API, RestUtil.BOOK_DEV_API})
+@Slf4j
+@RequestMapping("${route.api}" + "/" + "${route.books.path}")
 @CrossOrigin(origins = {RestUtil.ANGULAR_HOST, RestUtil.TOMCAT_HOST})
 public class BookRestController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BookRestController.class);
+    @Autowired
+    private BookRepository bookRepository;
 
     private static List<Book> books;
 
@@ -33,18 +36,16 @@ public class BookRestController {
         books.add(new Book(8, "Rafałek", "PoE", "234"));
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Book>> getBooks() {
-        LOGGER.info("Getting list of all books.");
-        if (books.isEmpty())
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    @GetMapping
+    public ResponseEntity getBooks() {
+        log.info("Getting list of all books.");
 
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        return ResponseEntity.ok(bookRepository.findAll());
     }
 
-    @RequestMapping(path = "/{id}" ,method = RequestMethod.GET)
+
     public ResponseEntity<Book> getBookById(@PathVariable Integer id) {
-        LOGGER.info("Getting book by id " + id);
+        log.info("Getting book by id " + id);
         Optional<Book> optional = books.stream()
                 .filter(book -> book.getId().compareTo(id) == 0)
                 .findAny();
@@ -53,14 +54,14 @@ public class BookRestController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+
     public ResponseEntity<Book> createBook(@RequestBody Book book) {
-        LOGGER.info("Creating new book " + book.toString());
+        log.info("Creating new book " + book.toString());
         books.add(book);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+
     public ResponseEntity<Book> editBook(@PathVariable Integer id, @RequestBody Book book) {
         Optional<Book> optional = books.stream()
                 .filter(b -> b.getId().compareTo(id) == 0)
@@ -75,9 +76,9 @@ public class BookRestController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+
     public ResponseEntity deleteBook(@PathVariable Integer id) {
-        LOGGER.info("Deleting book by id " + id);
+        log.info("Deleting book by id " + id);
         Optional<Book> optional = books.stream()
                 .filter(book -> book.getId().compareTo(id) == 0)
                 .findAny();

@@ -8,9 +8,7 @@ public class RestUtil {
 
     // General REST API
     private static final String API = "/api";
-    private static final String DEV_API = "/cookbook/api";
 
     // Books
     public static final String BOOK_API = API + "/books";
-    public static final String BOOK_DEV_API = DEV_API + "/books";
 }
