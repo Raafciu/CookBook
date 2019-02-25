@@ -10,6 +10,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import pl.com.redpike.cookbook.data.category.CategoryRepository;
+import pl.com.redpike.cookbook.data.recipe.RecipeRepository;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -17,7 +18,8 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(
         basePackageClasses = {
-                CategoryRepository.class
+                CategoryRepository.class,
+                RecipeRepository.class
         },
         entityManagerFactoryRef = "cookbookEntityManager",
         transactionManagerRef = "cookbookTransactionManager"

@@ -12,3 +12,5 @@ route:
     path: book
   category:
     path: category
+  recipe:
+    path: recipe
