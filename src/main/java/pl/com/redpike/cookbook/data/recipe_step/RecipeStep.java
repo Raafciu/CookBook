@@ -1,4 +1,4 @@
-package pl.com.redpike.cookbook.data.category;
+package pl.com.redpike.cookbook.data.recipe_step;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +9,8 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "recipe_step")
+public class RecipeStep {
 
     @Id
     @NotNull
@@ -19,13 +19,6 @@ public class Category {
     private Integer id;
 
     @NotNull
-    @Column(name = "name", length = 80, nullable = false)
-    private String name;
-
-    @Lob
-    @Column(name = "category_photo")
-    private byte[] categoryPhoto;
-
-    @Column(name = "parent_id")
-    private Integer parentId;
+    @Column(name = "body", length = 1000, nullable = false)
+    private String body;
 }
