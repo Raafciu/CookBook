@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @Slf4j
-@RequestMapping("${route.api}" + "/" + "${route.books.path}")
+@RequestMapping("${route.api}" + "/" + "${route.book.path}")
 @CrossOrigin(origins = {RestUtil.ANGULAR_HOST, RestUtil.TOMCAT_HOST})
 public class BookRestController {
 
