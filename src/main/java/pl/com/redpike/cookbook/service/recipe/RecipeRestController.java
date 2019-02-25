@@ -24,7 +24,7 @@ public class RecipeRestController {
     private RecipeRepository recipeRepository;
 
     @GetMapping
-    public ResponseEntity getAllCategories() {
+    public ResponseEntity getAllRecipes() {
         log.info("Getting list of all recipes");
 
         return ResponseEntity.ok(recipeRepository.findAll());
@@ -38,7 +38,7 @@ public class RecipeRestController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createCategory(@RequestBody Recipe recipe) {
+    public ResponseEntity createRecipe(@RequestBody Recipe recipe) {
         if (recipeRepository.findRecipeByName(recipe.getName()).isPresent())
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
         else {
@@ -51,7 +51,7 @@ public class RecipeRestController {
     }
 
     @PutMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity editCategory(@PathVariable Integer id, @RequestBody Recipe recipe) {
+    public ResponseEntity editRecipe(@PathVariable Integer id, @RequestBody Recipe recipe) {
         Optional<Recipe> optional = recipeRepository.findById(id);
 
         if (optional.isPresent()) {
