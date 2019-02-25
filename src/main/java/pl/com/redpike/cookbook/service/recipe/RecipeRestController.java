@@ -25,7 +25,7 @@ public class RecipeRestController {
 
     @GetMapping
     public ResponseEntity getAllCategories() {
-        log.info("Getting list of all categories");
+        log.info("Getting list of all recipes");
 
         return ResponseEntity.ok(recipeRepository.findAll());
     }
