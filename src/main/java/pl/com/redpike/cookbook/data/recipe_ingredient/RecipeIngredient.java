@@ -1,6 +1,7 @@
-package pl.com.redpike.cookbook.data.recipe_component;
+package pl.com.redpike.cookbook.data.recipe_ingredient;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,14 +9,14 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
-@Table(name = "recipe_component")
-public class RecipeComponent {
+@Table(name = "recipe_ingredient")
+public class RecipeIngredient {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", precision = 9, unique = true, nullable = false)
+    @Column(name = "id", precision = 9, unique = true)
     private Integer id;
 
     @NotNull

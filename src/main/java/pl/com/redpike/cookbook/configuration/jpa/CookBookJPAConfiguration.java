@@ -31,7 +31,7 @@ public class CookBookJPAConfiguration {
     private static final String DEFAULT_PACKAGE = "pl.com.redpike.cookbook.data.";
     private static final String CATEGORY_PACKAGE = DEFAULT_PACKAGE + "category";
     private static final String RECIPE_PACKAGE = DEFAULT_PACKAGE + "recipe";
-    private static final String RECIPE_COMPONENT_PACKAGE = DEFAULT_PACKAGE + "recipe_component";
+    private static final String RECIPE_INGREDIENT_PACKAGE = DEFAULT_PACKAGE + "recipe_ingredient";
     private static final String RECIPE_STEP_PACKAGE = DEFAULT_PACKAGE + "recipe_step";
 
     @Bean
@@ -40,7 +40,7 @@ public class CookBookJPAConfiguration {
         managerFactoryBean.setPackagesToScan(
                 CATEGORY_PACKAGE,
                 RECIPE_PACKAGE,
-                RECIPE_COMPONENT_PACKAGE,
+                RECIPE_INGREDIENT_PACKAGE,
                 RECIPE_STEP_PACKAGE
         );
         managerFactoryBean.setDataSource(dataSource());

@@ -1,8 +1,9 @@
 package pl.com.redpike.cookbook.data.recipe;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import pl.com.redpike.cookbook.data.recipe_component.RecipeComponent;
+import pl.com.redpike.cookbook.data.recipe_ingredient.RecipeIngredient;
 import pl.com.redpike.cookbook.data.recipe_step.RecipeStep;
 
 import javax.persistence.*;
@@ -11,14 +12,14 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 @Table(name = "recipe")
 public class Recipe {
 
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", precision = 9, unique = true, nullable = false)
+    @Column(name = "id", precision = 9, unique = true)
     private Integer id;
 
     @NotNull
@@ -29,11 +30,11 @@ public class Recipe {
     @Column(name = "recipe_photo")
     private byte[] recipePhoto;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
-    private List<RecipeComponent> components;
+    private List<RecipeIngredient> ingredients;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     private List<RecipeStep> steps;
 }
