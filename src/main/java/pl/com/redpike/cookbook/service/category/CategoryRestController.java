@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.com.redpike.cookbook.data.category.Category;
 import pl.com.redpike.cookbook.data.category.CategoryRepository;
+import pl.com.redpike.cookbook.data.recipe.RecipeRepository;
 import pl.com.redpike.cookbook.util.RestUtil;
 
 import java.net.URI;
@@ -23,6 +24,9 @@ public class CategoryRestController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private RecipeRepository recipeRepository;
+
     @GetMapping
     public ResponseEntity getAllCategories() {
         log.info("Getting list of all categories");
@@ -32,9 +36,14 @@ public class CategoryRestController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity getCategoryById(@PathVariable Integer id) {
-        return categoryRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.noContent().build());
+        Optional<Category> parent = categoryRepository.findById(id);
+
+        if (parent.isPresent())
+            return categoryRepository.findCategoryByParentId(parent.get())
+                    .map(ResponseEntity::ok)
+                    .orElseGet(() -> ResponseEntity.noContent().build());
+        else
+            return ResponseEntity.notFound().build();
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -63,9 +72,30 @@ public class CategoryRestController {
         return ResponseEntity.notFound().build();
     }
 
+    /**
+     * Remove parent with children nodes and move it to root
+     *
+     * @param id - ID of category to delete
+     * @return HTTP Response
+     */
     @DeleteMapping(path = "/{id}")
     public ResponseEntity deleteCategory(@PathVariable Integer id) {
-        categoryRepository.deleteById(id);
+        Optional<Category> parent = categoryRepository.findById(id);
+
+        parent.ifPresent(category -> {
+            // Unpin category from recipe
+            recipeRepository.findRecipeByCategory(category).ifPresent(recipes -> {
+                recipes.forEach(recipe -> recipe.setCategory(null));
+                recipeRepository.saveAll(recipes);
+            });
+
+            // Remove tree structure of folders and pin children to root
+            categoryRepository.findCategoryByParentId(category).ifPresent(children -> {
+                children.forEach(child -> child.setParent(null));
+                categoryRepository.saveAll(children);
+            });
+            categoryRepository.delete(category);
+        });
 
         return ResponseEntity.ok().build();
     }

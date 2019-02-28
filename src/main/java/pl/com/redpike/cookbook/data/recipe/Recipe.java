@@ -3,6 +3,7 @@ package pl.com.redpike.cookbook.data.recipe;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import pl.com.redpike.cookbook.data.category.Category;
 import pl.com.redpike.cookbook.data.recipe_ingredient.RecipeIngredient;
 import pl.com.redpike.cookbook.data.recipe_step.RecipeStep;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = {"recipePhoto"})
 @Entity
 @Table(name = "recipe")
 public class Recipe {
@@ -37,4 +38,8 @@ public class Recipe {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
     private List<RecipeStep> steps;
+
+    @OneToOne
+    @JoinColumn(name = "category", referencedColumnName = "id")
+    private Category category;
 }
