@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Optional;
 
+import static pl.com.redpike.cookbook.data.DataProperties.*;
+
 @JsonComponent
 public class CategoryDeserializer extends JsonDeserializer<Category> {
 
@@ -24,12 +26,12 @@ public class CategoryDeserializer extends JsonDeserializer<Category> {
     }
 
     private Category deserializeCategory(JsonNode jsonNode, Category category) {
-        category.setId(jsonNode.get("id").intValue());
-        category.setName(jsonNode.get("name").textValue());
+        category.setId(jsonNode.get(CATEGORY_ID_PROPERTY).intValue());
+        category.setName(jsonNode.get(CATEGORY_NAME_PROPERTY).textValue());
 
-        Optional.ofNullable(jsonNode.get("parentId")).ifPresent(node -> category.setParentId(node.intValue()));
+        Optional.ofNullable(jsonNode.get(CATEGORY_PARENT_ID_PROPERTY)).ifPresent(node -> category.setParentId(node.intValue()));
 
-        Optional.ofNullable(jsonNode.get("categoryPhoto")).ifPresent(photoBase64String -> {
+        Optional.ofNullable(jsonNode.get(CATEGORY_CATEGORY_PHOTO_PROPERTY)).ifPresent(photoBase64String -> {
             byte[] base64 = Base64.getEncoder().encode(photoBase64String.textValue().getBytes());
             category.setCategoryPhoto(base64);
         });

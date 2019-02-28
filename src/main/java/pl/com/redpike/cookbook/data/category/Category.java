@@ -8,31 +8,33 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static pl.com.redpike.cookbook.data.DataProperties.*;
+
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = {"categoryPhoto"})
 @Entity
-@Table(name = "category")
+@Table(name = CATEGORY_TABLE)
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", precision = 9, unique = true, nullable = false)
+    @Column(name = CATEGORY_ID_COLUMN, precision = 9, unique = true, nullable = false)
     private Integer id;
 
     @NotNull
-    @Column(name = "name", length = 80, nullable = false)
+    @Column(name = CATEGORY_NAME_COLUMN, length = 80, nullable = false)
     private String name;
 
     @Lob
-    @Column(name = "category_photo")
+    @Column(name = CATEGORY_CATEGORY_PHOTO_COLUMN)
     private byte[] categoryPhoto;
 
-    @Column(name = "parent", nullable = true)
+    @Column(name = CATEGORY_PARENT_COLUMN, nullable = true)
     private Integer parentId;
 
     @JsonIgnore
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
-    @JoinColumn(name = "parent", nullable = true, insertable = false, updatable = false)
+    @JoinColumn(name = CATEGORY_PARENT_COLUMN, nullable = true, insertable = false, updatable = false)
     private Category parent;
 }

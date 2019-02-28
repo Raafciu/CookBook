@@ -6,19 +6,21 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import static pl.com.redpike.cookbook.data.DataProperties.*;
+
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "recipe_step")
+@Table(name = RECIPE_STEP_TABLE)
 public class RecipeStep {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", precision = 9, unique = true, nullable = false)
+    @Column(name = RECIPE_STEP_ID_COLUMN, precision = 9, unique = true, nullable = false)
     private Integer id;
 
     @NotNull
-    @Column(name = "body", length = 1000, nullable = false)
+    @Column(name = RECIPE_STEP_BODY_COLUMN, length = 1000, nullable = false)
     private String body;
 }
