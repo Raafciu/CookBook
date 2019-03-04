@@ -1,0 +1,100 @@
+.welcome-container {
+  text-align: center;
+  color: #FFF;
+  background: rgba(0, 0, 0, .45) no-repeat center;
+
+  .container {
+    display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box; /* OLD - Firefox 19- */
+    display: -ms-flexbox; /* TWEENER - IE 10 */
+    display: -webkit-flex; /* NEW - Chrome */
+    display: flex; /* NEW, Opera 12.1, Firefox 20+ */
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+
+  .inner {
+    margin: 0 auto;
+  }
+
+  .welcome-titles {
+    height: 80vh;
+
+    div {
+      line-height: 6rem;
+    }
+
+    .app-title {
+      font-family: 'Segoe Script', sans-serif;
+      font-size: 4.5rem;
+      margin-bottom: 20px;
+    }
+
+    .app-sub-title {
+      font-family: 'Lucida Calligraphy', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 10px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .welcome-footer {
+    height: 20vh;
+  }
+
+  a.enter-btn {
+    font-family: 'Avenir', sans-serif;
+    position: relative;
+    color: #FFF;
+    padding: 19px 22px;
+    transition: all .2s ease;
+
+    span {
+      position: relative;
+      font-size: 1.3rem;
+      line-height: 18px;
+      letter-spacing: 0.25em;
+      vertical-align: middle;
+    }
+
+    svg {
+      position: relative;
+      top: 0;
+      margin-left: 10px;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke: #111;
+      stroke-width: 2;
+      transform: translateX(-5px);
+      transition: all 0.3s ease;
+    }
+  }
+
+  a.enter-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    border-radius: 28px;
+    background: rgba(93, 132, 82, .5);
+    width: 56px;
+    height: 56px;
+    transition: all 0.3s ease;
+  }
+
+  a.enter-btn:hover:before {
+    width: 100%;
+    background: rgba(93, 132, 82, 1);
+  }
+
+  a.enter-btn:hover svg {
+    transform: translateX(0);
+  }
+
+  a.enter-btn:active {
+    transform: scale(0.96);
+  }
+}

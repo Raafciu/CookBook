@@ -4,15 +4,15 @@ import {HttpClientModule} from "@angular/common/http";
 
 import {AppRoutingModule} from './configuration/app-routing.module';
 import {MaterialModule} from "./module/material/material.module";
-import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 import 'hammerjs';
+import {WelcomePageComponent} from "./views/welcome-page/welcome-page.component";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import 'hammerjs';
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [WelcomePageComponent]
 })
 export class AppModule {
 }
