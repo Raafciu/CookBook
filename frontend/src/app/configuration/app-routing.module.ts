@@ -1,10 +1,22 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {WelcomePageComponent} from "../views/welcome-page/welcome-page.component";
+import {HOME_PATH} from "./paths";
+import {HomePageComponent} from "../views/home-page/home-page.component";
 
-const routes: Routes = [];
+const ROUTES: Routes = [
+  {
+    path: '',
+    component: WelcomePageComponent,
+  },
+  {
+    path: HOME_PATH,
+    component: HomePageComponent
+  }
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(ROUTES)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

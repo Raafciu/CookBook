@@ -9,10 +9,16 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 import 'hammerjs';
 import {WelcomePageComponent} from "./views/welcome-page/welcome-page.component";
+import {HomePageComponent} from "./views/home-page/home-page.component";
+import {AppComponent} from "./app.component";
 
 @NgModule({
   declarations: [
-    WelcomePageComponent
+    AppComponent,
+
+    // VIEWS
+    WelcomePageComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,7 @@ import {WelcomePageComponent} from "./views/welcome-page/welcome-page.component"
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
   ],
-  bootstrap: [WelcomePageComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

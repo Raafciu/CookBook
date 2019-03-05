@@ -1,0 +1,27 @@
+<mat-sidenav-container class="sidenav" (backdropClick)="close()">
+
+  <mat-sidenav class="sidenav-menu" #sidenav (keydown.escape)="close()" disableClose>
+    <mat-toolbar class="header-toolbar">
+      <div class="menu-container">
+        <button class="menu-icon close" mat-flat-button (click)="sidenav.toggle()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="header-toolbar">
+      <div class="menu-container">
+        <button class="menu-icon open" mat-flat-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+
+      <div class="header-container">
+        <span class="app-name">CookBook</span>
+      </div>
+    </mat-toolbar>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
