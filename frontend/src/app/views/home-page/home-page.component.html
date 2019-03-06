@@ -1,16 +1,16 @@
 <mat-sidenav-container class="sidenav" (backdropClick)="close()">
 
-  <mat-sidenav class="sidenav-menu" #sidenav (keydown.escape)="close()" disableClose>
+  <mat-sidenav class="sidenav-menu content" #sidenav [opened]="opened" [mode]="changeSideNavMode()" disableClose>
     <mat-toolbar class="header-toolbar">
       <div class="menu-container">
-        <button class="menu-icon close" mat-flat-button (click)="sidenav.toggle()">
+        <button class="menu-icon close" *ngIf="!opened" mat-flat-button (click)="sidenav.toggle()">
           <mat-icon>close</mat-icon>
         </button>
       </div>
     </mat-toolbar>
   </mat-sidenav>
 
-  <mat-sidenav-content>
+  <mat-sidenav-content class="content">
     <mat-toolbar class="header-toolbar">
       <div class="menu-container">
         <button class="menu-icon open" mat-flat-button (click)="sidenav.toggle()">

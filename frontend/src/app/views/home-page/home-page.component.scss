@@ -12,8 +12,8 @@
 }
 
 .sidenav-menu {
-  width: 300px;
-  background: rgba(93, 132, 82, .9);
+  width: 200px;
+  background: rgba(111, 160, 97, .9);
 }
 
 .menu-icon {
@@ -28,13 +28,22 @@
 }
 
 .header-toolbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 2020;
   background: rgba(93, 132, 82, 1);
-  text-align: center;
   font-family: 'Segoe Script', sans-serif;
   font-size: 2rem;
 }
 
 .menu-icon,
-.header-toolbar {
+.header-toolbar,
+.content {
   color: #FFF;
+}
+
+.content-container {
+  width: 100%;
+  padding: 16px
 }
