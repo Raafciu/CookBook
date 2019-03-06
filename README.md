@@ -7,4 +7,3 @@ We have two separated modules:
 ## Contributors
 
 * [Redpike](https://github.com/Redpike)
-* [KurdDt](https://github.com/KurdTt)
