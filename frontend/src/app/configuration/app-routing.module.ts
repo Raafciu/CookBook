@@ -3,6 +3,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {WelcomePageComponent} from "../views/welcome-page/welcome-page.component";
 import {HOME_PATH} from "./paths";
 import {HomePageComponent} from "../views/home-page/home-page.component";
+import {TestComponent} from "../component/test.component";
+import {CategoryPageComponent} from "../views/category-page/category-page.component";
 
 const ROUTES: Routes = [
   {
@@ -11,7 +13,17 @@ const ROUTES: Routes = [
   },
   {
     path: HOME_PATH,
-    component: HomePageComponent
+    component: HomePageComponent,
+    children: [
+      {
+        path: 'test',
+        component: TestComponent
+      },
+      {
+        path: 'category',
+        component: CategoryPageComponent
+      }
+    ]
   }
 ];
 

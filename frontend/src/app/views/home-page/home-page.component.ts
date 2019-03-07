@@ -1,10 +1,12 @@
 import {Component, HostListener, ViewChild} from "@angular/core";
 import {MatSidenav} from "@angular/material";
+import {fadeAnimation} from "../../shared/animations/animations";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+  styleUrls: ['./home-page.component.scss'],
+  animations: [fadeAnimation]
 })
 export class HomePageComponent {
 

@@ -11,6 +11,9 @@ import 'hammerjs';
 import {WelcomePageComponent} from "./views/welcome-page/welcome-page.component";
 import {HomePageComponent} from "./views/home-page/home-page.component";
 import {AppComponent} from "./app.component";
+import {TestComponent} from "./component/test.component";
+import {CategoryPageComponent} from "./views/category-page/category-page.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [
@@ -18,14 +21,17 @@ import {AppComponent} from "./app.component";
 
     // VIEWS
     WelcomePageComponent,
-    HomePageComponent
+    HomePageComponent,
+    TestComponent,
+    CategoryPageComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

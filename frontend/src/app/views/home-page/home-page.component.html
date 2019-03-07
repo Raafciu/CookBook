@@ -1,5 +1,4 @@
 <mat-sidenav-container class="sidenav" (backdropClick)="close()">
-
   <mat-sidenav class="sidenav-menu content" #sidenav [opened]="opened" [mode]="changeSideNavMode()" disableClose>
     <mat-toolbar class="header-toolbar">
       <div class="menu-container">
@@ -8,20 +7,34 @@
         </button>
       </div>
     </mat-toolbar>
+
+    <mat-nav-list>
+      <h2 matSubheader>Kategorie</h2>
+      <a mat-list-item routerLink="category">
+        <mat-icon matListIcon>folder</mat-icon>
+        Kategorie
+      </a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content class="content">
     <mat-toolbar class="header-toolbar">
-      <div class="menu-container">
-        <button class="menu-icon open" mat-flat-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </div>
+      <mat-toolbar-row>
+        <div class="menu-container">
+          <button class="menu-icon open" mat-flat-button (click)="sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </div>
 
-      <div class="header-container">
-        <span class="app-name">CookBook</span>
-      </div>
+        <div class="header-container">
+          <span class="app-name">CookBook</span>
+        </div>
+      </mat-toolbar-row>
     </mat-toolbar>
-
+    <div>
+      <div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''">
+        <router-outlet #o="outlet"></router-outlet>
+      </div>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
