@@ -14,10 +14,16 @@ import {AppComponent} from "./app.component";
 import {TestComponent} from "./component/test.component";
 import {CategoryPageComponent} from "./views/category-page/category-page.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
+import {MenuItemComponent} from "./component/menu-item.component/menu-item.component";
+import {CategoryItemComponent} from "./component/category-item.component/category-item.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+
+    // COMPONENTS
+    CategoryItemComponent,
+    MenuItemComponent,
 
     // VIEWS
     WelcomePageComponent,

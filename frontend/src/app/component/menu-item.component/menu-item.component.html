@@ -1,0 +1,12 @@
+<mat-nav-list class="menu-group" *ngFor="let item of MENU_ITEMS">
+  <h3 matSubheader>{{item.group}}</h3>
+  <a class="menu-link" *ngFor="let link of item.items" mat-list-item
+     routerLinkActive
+    #routerLinkActiveInstance="routerLinkActive"
+    [class.list-item-active]="routerLinkActiveInstance.isActive"
+    [routerLink]="link.path">
+    <mat-icon matListIcon>{{link.icon}}</mat-icon>
+    {{link.name}}
+  </a>
+  <mat-divider></mat-divider>
+</mat-nav-list>

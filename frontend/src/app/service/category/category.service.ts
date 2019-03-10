@@ -9,6 +9,7 @@ export class CategoryService {
   }
 
   getCategories(): Observable<any> {
-    return this.http.get('./assets/mock-categories.json');
+    // return this.http.get('./assets/mock-categories.json');
+    return this.http.get('http://localhost:8080/api/category');
   }
 }

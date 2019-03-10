@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {WelcomePageComponent} from "../views/welcome-page/welcome-page.component";
-import {HOME_PATH} from "./paths";
+import {CATEGORY_PATH, HOME_PATH, TEST_PATH} from "./paths";
 import {HomePageComponent} from "../views/home-page/home-page.component";
 import {TestComponent} from "../component/test.component";
 import {CategoryPageComponent} from "../views/category-page/category-page.component";
@@ -16,12 +16,12 @@ const ROUTES: Routes = [
     component: HomePageComponent,
     children: [
       {
-        path: 'test',
-        component: TestComponent
+        path: CATEGORY_PATH,
+        component: CategoryPageComponent
       },
       {
-        path: 'category',
-        component: CategoryPageComponent
+        path: TEST_PATH,
+        component: TestComponent
       }
     ]
   }
@@ -31,4 +31,5 @@ const ROUTES: Routes = [
   imports: [RouterModule.forRoot(ROUTES)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

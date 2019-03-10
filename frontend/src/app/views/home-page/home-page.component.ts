@@ -6,7 +6,8 @@ import {fadeAnimation} from "../../shared/animations/animations";
   selector: 'app-home',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
-  animations: [fadeAnimation]
+  animations: [fadeAnimation],
+
 })
 export class HomePageComponent {
 
