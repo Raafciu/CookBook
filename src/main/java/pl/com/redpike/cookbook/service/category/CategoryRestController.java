@@ -39,6 +39,16 @@ public class CategoryRestController {
         Optional<Category> parent = categoryRepository.findById(id);
 
         if (parent.isPresent())
+            return ResponseEntity.ok(parent.get());
+        else
+            return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping(path = "${route.category.children}" + "/{id}")
+    public ResponseEntity getCategoryByParentId(@PathVariable Integer id) {
+        Optional<Category> parent = categoryRepository.findById(id);
+
+        if (parent.isPresent())
             return categoryRepository.findCategoryByParentId(parent.get())
                     .map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.noContent().build());

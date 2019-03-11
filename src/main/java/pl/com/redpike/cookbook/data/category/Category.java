@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 import static pl.com.redpike.cookbook.data.DataProperties.*;
 
@@ -37,4 +38,7 @@ public class Category {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = CATEGORY_PARENT_COLUMN, nullable = true, insertable = false, updatable = false)
     private Category parent;
+
+    @OneToMany(mappedBy = CATEGORY_PARENT_PROPERTY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Category> children;
 }

@@ -18,6 +18,7 @@ public class DataProperties {
     public static final String CATEGORY_ID_PROPERTY = "id";
     public static final String CATEGORY_NAME_PROPERTY = "name";
     public static final String CATEGORY_CATEGORY_PHOTO_PROPERTY = "categoryPhoto";
+    public static final String CATEGORY_PARENT_PROPERTY = "parent";
     public static final String CATEGORY_PARENT_ID_PROPERTY = "parentId";
 
     /**
