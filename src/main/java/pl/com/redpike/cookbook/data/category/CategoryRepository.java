@@ -8,9 +8,12 @@ import java.util.Optional;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
 
+    @Query("from Category c where c.parent = null")
+    List<Category> findRootCategory();
+
     @Query("from Category c where c.name = :name")
     Optional<Category> findCategoryByName(String name);
 
-    @Query("from Category c where c.parent = :parent")
-    Optional<List<Category>> findCategoryByParentId(Category parent);
+    @Query("from Category c where c.parentId = :parent")
+    Optional<List<Category>> findCategoryByParentId(Integer parent);
 }

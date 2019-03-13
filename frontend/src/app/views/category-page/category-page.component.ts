@@ -28,6 +28,6 @@ export class CategoryPageComponent implements OnInit {
         this.categories = data;
       }, error => {
         console.log('Nie pykło');
-      })
+      });
   }
 }

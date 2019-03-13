@@ -28,6 +28,13 @@ public class CategoryRestController {
     private RecipeRepository recipeRepository;
 
     @GetMapping
+    public ResponseEntity getAllRootCategories() {
+        log.info("Getting list of root categories");
+
+        return ResponseEntity.ok(categoryRepository.findRootCategory());
+    }
+
+    @GetMapping(path = "${route.category.all")
     public ResponseEntity getAllCategories() {
         log.info("Getting list of all categories");
 

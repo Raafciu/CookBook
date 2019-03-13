@@ -12,6 +12,7 @@ route:
     path: book
   category:
     path: category
+    all: all
     children: children
   recipe:
     path: recipe
