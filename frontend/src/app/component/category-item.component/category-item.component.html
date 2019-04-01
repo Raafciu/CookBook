@@ -5,5 +5,5 @@
       <mat-icon>more_vert</mat-icon>
     </button>
   </mat-card-header>
-  <img mat-card-image src="{{category.categoryPhoto}}" alt="{{category.name}}">
+  <img mat-card-image [src]="category.categoryPhoto" [alt]="category.name">
 </mat-card>

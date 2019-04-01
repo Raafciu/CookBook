@@ -56,7 +56,7 @@ public class CategoryRestController {
         Optional<Category> parent = categoryRepository.findById(id);
 
         if (parent.isPresent())
-            return categoryRepository.findCategoryByParentId(parent.get())
+            return categoryRepository.findCategoryByParentId(parent.get().getId())
                     .map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.noContent().build());
         else
@@ -107,7 +107,7 @@ public class CategoryRestController {
             });
 
             // Remove tree structure of folders and pin children to root
-            categoryRepository.findCategoryByParentId(category).ifPresent(children -> {
+            categoryRepository.findCategoryByParentId(category.getId()).ifPresent(children -> {
                 children.forEach(child -> child.setParent(null));
                 categoryRepository.saveAll(children);
             });
