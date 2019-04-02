@@ -2,46 +2,55 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../model/category';
 import {map} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs';
+import {NotificationService} from '../../service/notification/notification.service';
 
 @Component({
   selector: 'app-category-page',
   templateUrl: './category-page.component.html',
   styleUrls: ['./category-page.component.scss'],
-  providers: [CategoryService]
+  providers: [CategoryService, NotificationService]
 })
 export class CategoryPageComponent implements OnInit {
 
   categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService) {
+  private currentId = null;
+
+  constructor(private categoryService: CategoryService,
+              private notificationService: NotificationService,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.categoryService.getCategories()
-      .pipe(map(mapCategories))
-      .subscribe(data => {
-        this.categories = data;
-      }, error => {
-        console.log('Nie pykło');
-      });
+    this.currentId = this.route.snapshot.paramMap.get('parentId');
+    if (this.currentId) {
+      this.refreshContent(this.currentId);
+    } else {
+      this.categoryService.getCategories()
+        .pipe(map(mapCategories))
+        .subscribe(data => {
+          this.categories = data;
+        }, () => {
+          this.notificationService.error('Nie mogę pobrać kategorii');
+        });
+    }
   }
 
   refreshContent(categoryId: number): void {
-    console.log(categoryId);
-    this.categoryService.getCategoriesByParentId(categoryId)
-      .pipe(
-        map(value => {
-          console.log(value);
-          return new Category(value.id, value.name, 'data:image/jpg;base64,' + value.categoryPhoto, value.parent, value.children);
-        })
-      )
-      .subscribe(response => {
-        const category = response;
-        if (category.children.length !== 0) {
-          // TODO Routing
-          console.log(category.children);
-          this.categories = category.children;
-        }
+    let observable: Observable<any>;
+    if (categoryId) {
+      observable = this.categoryService.getCategoriesByParentId(categoryId);
+    } else {
+      observable = this.categoryService.getCategories();
+    }
+
+    observable.pipe(map(mapCategories))
+      .subscribe(data => {
+        this.categories = data;
+      }, () => {
+        this.notificationService.default('Kategoria ' + categoryId + ' nie posiada podkategorii');
       });
   }
 }

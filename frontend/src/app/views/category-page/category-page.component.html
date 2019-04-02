@@ -1,5 +1,5 @@
-<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="start">
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutAlign="start" fxLayoutAlign.lt-sm="start center">
   <app-category-item *ngFor="let category of categories" [category]="category" fxFlex="0 0 calc(18% - 12px)"
                      fxFlex.lt-md="0 0 calc(25% - 12px)"
-                     fxFlex.lt-sm="0 0 48%" [ngStyle]="{'margin.px': 6}" (click)="refreshContent(category.id)"></app-category-item>
+                     fxFlex.lt-sm="0 0 calc(48% - 12px)" [ngStyle]="{'margin.px': 6}" (dblclick)="refreshContent(category.id)"></app-category-item>
 </div>

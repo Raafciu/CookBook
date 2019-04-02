@@ -14,6 +14,6 @@ export class CategoryService {
   }
 
   getCategoriesByParentId(parentId: number): Observable<any> {
-    return this.http.get('http://localhost:8080/api/category/' + parentId);
+    return this.http.get('http://localhost:8080/api/category/children/' + parentId);
   }
 }
