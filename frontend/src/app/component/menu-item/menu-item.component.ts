@@ -1,5 +1,5 @@
-import {Component} from "@angular/core";
-import {CATEGORY_PATH, TEST_PATH} from "../../configuration/paths";
+import {Component} from '@angular/core';
+import {CATEGORY_PATH, TEST_PATH} from '../../configuration/paths';
 
 @Component({
   selector: 'app-menu-item',

@@ -1,6 +1,6 @@
-import {Component, HostListener, ViewChild} from "@angular/core";
-import {MatSidenav} from "@angular/material";
-import {fadeAnimation} from "../../shared/animations/animations";
+import {Component, HostListener, ViewChild} from '@angular/core';
+import {MatSidenav} from '@angular/material';
+import {fadeAnimation} from '../../shared/animations/animations';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomePageComponent {
   }
 
   @HostListener('window:resize', ['$event'])
-  changeSideNavMode($event) {
+  changeSideNavMode() {
     const innerWidth = window.innerWidth;
     if (innerWidth <= 1024) {
       this.opened = false;

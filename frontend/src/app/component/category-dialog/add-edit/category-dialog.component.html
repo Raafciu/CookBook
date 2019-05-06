@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{dialogHeader}}</h2>
+
+<mat-dialog-content [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Nazwa kategorii</mat-label>
+    <input matInput placeholder="Nazwa kategorii" [formControl]="nameFC"/>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" (click)="editCategory(category)">Zatwierdź</button>
+  <button mat-raised-button (click)="closeDialog()">Anuluj</button>
+</mat-dialog-actions>
