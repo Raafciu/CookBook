@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../model/category';
 import {map} from 'rxjs/operators';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {NotificationService} from '../../service/notification/notification.service';
+import {CATEGORY_ID_PARAMETER, CATEGORY_PATH, HOME_PATH} from '../../configuration/paths';
 
 @Component({
   selector: 'app-category-page',
@@ -20,38 +21,33 @@ export class CategoryPageComponent implements OnInit {
 
   constructor(private categoryService: CategoryService,
               private notificationService: NotificationService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    this.currentId = this.route.snapshot.paramMap.get('parentId');
-    if (this.currentId) {
-      this.refreshContent(this.currentId);
-    } else {
-      this.categoryService.getCategories()
+    this.route.params.forEach(params => {
+      this.currentId = params[CATEGORY_ID_PARAMETER];
+      let observable: Observable<any>;
+      if (this.currentId) {
+        observable = this.categoryService.getCategoriesByParentId(this.currentId);
+      } else {
+        observable = this.categoryService.getCategories();
+      }
+
+      observable
         .pipe(map(mapCategories))
         .subscribe(data => {
           this.categories = data;
         }, () => {
-          this.notificationService.error('Nie mogę pobrać kategorii');
+          this.categories = [];
+          this.notificationService.default('Kategoria ' + this.currentId + ' nie posiada podkategorii');
         });
-    }
+    });
   }
 
   refreshContent(categoryId: number): void {
-    let observable: Observable<any>;
-    if (categoryId) {
-      observable = this.categoryService.getCategoriesByParentId(categoryId);
-    } else {
-      observable = this.categoryService.getCategories();
-    }
-
-    observable.pipe(map(mapCategories))
-      .subscribe(data => {
-        this.categories = data;
-      }, () => {
-        this.notificationService.default('Kategoria ' + categoryId + ' nie posiada podkategorii');
-      });
+    this.router.navigateByUrl(HOME_PATH + '/' + CATEGORY_PATH + '/' + categoryId);
   }
 }
 
