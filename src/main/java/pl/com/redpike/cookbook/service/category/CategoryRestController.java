@@ -34,7 +34,7 @@ public class CategoryRestController {
         return ResponseEntity.ok(categoryRepository.findRootCategory());
     }
 
-    @GetMapping(path = "${route.category.all")
+    @GetMapping(path = "${route.category.all}")
     public ResponseEntity getAllCategories() {
         log.info("Getting list of all categories");
 
