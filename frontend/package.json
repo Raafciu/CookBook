@@ -4,8 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --base-href /cookbook/",
-    "buildWatch": "ng build --aot --output-path=../target/cookbook/WEB-INF/classes/static --base-href /cookbook/ --watch",
+    "build": "ng build --prod --base-href /",
+    "buildWatch": "ng build --aot --output-path=../target/classes/static --base-href / --watch",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

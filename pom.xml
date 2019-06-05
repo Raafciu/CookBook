@@ -6,7 +6,7 @@
     <groupId>pl.com.redpike</groupId>
     <artifactId>cookbook</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -16,8 +16,6 @@
     </parent>
 
     <properties>
-        <junit-jupiter.version>5.1.1</junit-jupiter.version>
-        <junit-platform.version>1.1.0</junit-platform.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
@@ -51,18 +49,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 
     <build>
@@ -78,7 +64,7 @@
         <profile>
             <id>production</id>
             <build>
-                <finalName>${artifactId}</finalName>
+                <finalName>${project.artifactId}</finalName>
                 <plugins>
                     <plugin>
                         <groupId>com.github.eirslett</groupId>
@@ -123,13 +109,13 @@
                         <executions>
                             <execution>
                                 <id>default-copy-resources</id>
-                                <phase>process-resources</phase>
+                                <phase>validate</phase>
                                 <goals>
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
                                     <overwrite>true</overwrite>
-                                    <outputDirectory>target/${artifactId}/WEB-INF/classes/static</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/classes/static/</outputDirectory>
                                     <resources>
                                         <resource>
                                             <directory>frontend/dist</directory>
@@ -146,6 +132,24 @@
         <profile>
             <id>test</id>
             <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-test</artifactId>
+                    <scope>test</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>junit</groupId>
+                            <artifactId>junit</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
                 <dependency>
                     <groupId>org.junit.jupiter</groupId>
                     <artifactId>junit-jupiter-api</artifactId>
