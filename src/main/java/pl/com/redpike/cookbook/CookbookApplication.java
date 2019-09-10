@@ -19,7 +19,6 @@ import javax.net.ssl.HttpsURLConnection;
 })
 @ComponentScan(CookbookApplication.DEFAULT_PACKAGE)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
-@Slf4j
 public class CookbookApplication extends SpringBootServletInitializer {
 
 	static final String APPLICATION_YML = "classpath:application.yml";

@@ -1,1 +1,1 @@
-mvn clean package -P!production
+mvn clean package -P!production,test

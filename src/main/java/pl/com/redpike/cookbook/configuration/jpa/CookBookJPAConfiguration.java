@@ -53,7 +53,9 @@ public class CookBookJPAConfiguration {
     @Bean
     @ConfigurationProperties(prefix = PROPERTIES_PREFIX)
     public DataSource dataSource() {
-        return DataSourceBuilder.create().build();
+        return DataSourceBuilder
+                .create()
+                .build();
     }
 
     @Bean
