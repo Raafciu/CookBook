@@ -1,6 +1,5 @@
 package pl.com.redpike.cookbook;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -9,8 +8,6 @@ import org.springframework.context.annotation.EnableMBeanExport;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.jmx.support.RegistrationPolicy;
-
-import javax.net.ssl.HttpsURLConnection;
 
 @SpringBootApplication
 @PropertySources({
@@ -25,10 +22,6 @@ public class CookbookApplication extends SpringBootServletInitializer {
 	static final String DB_PROPERTIES = "classpath:db.properties";
 
 	static final String DEFAULT_PACKAGE = "pl.com.redpike.cookbook";
-
-	static {
-		HttpsURLConnection.setDefaultHostnameVerifier((hostname, session) -> true);
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(CookbookApplication.class, args);

@@ -11,7 +11,7 @@ import {fadeAnimation} from '../../shared/animations/animations';
 })
 export class HomePageComponent {
 
-  @ViewChild('sidenav') sidenav: MatSidenav;
+  @ViewChild('sidenav', {static: true}) sidenav: MatSidenav;
   opened: boolean;
 
   close() {

@@ -27,6 +27,7 @@ export class CategoryPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.forEach(params => {
+      console.log(params);
       this.currentId = params[CATEGORY_ID_PARAMETER];
       let observable: Observable<any>;
       if (this.currentId) {
@@ -41,7 +42,6 @@ export class CategoryPageComponent implements OnInit {
           this.categories = data;
         }, () => {
           this.categories = [];
-          this.notificationService.default('Kategoria ' + this.currentId + ' nie posiada podkategorii');
         });
     });
   }
