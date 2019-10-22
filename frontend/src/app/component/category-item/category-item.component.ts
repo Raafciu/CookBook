@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Category} from '../../model/category';
+import {Category} from '../../model/category/category';
 import {MatDialog} from '@angular/material';
 import {CategoryDialogComponent} from '../category-dialog/add-edit/category-dialog.component';
 import {CategoryRemoveDialogComponent} from '../category-dialog/remove/category-remove-dialog.component';

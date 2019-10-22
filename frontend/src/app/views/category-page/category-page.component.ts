@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from '../../service/category/category.service';
-import {Category} from '../../model/category';
+import {Category} from '../../model/category/category';
 import {map} from 'rxjs/operators';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';

@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Category} from '../../../model/category';
+import {Category} from '../../../model/category/category';
 import {CategoryService} from '../../../service/category/category.service';
 
 const DIALOG_HEADER = 'Usuwanie kategorii';
