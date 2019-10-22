@@ -1,5 +1,6 @@
+import { TranslateService } from './service/translate/translate.service';
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, APP_INITIALIZER} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './configuration/app-routing.module';
@@ -17,6 +18,10 @@ import {CategoryItemComponent} from './component/category-item/category-item.com
 import {CategoryDialogComponent} from './component/category-dialog/add-edit/category-dialog.component';
 import {CategoryRemoveDialogComponent} from './component/category-dialog/remove/category-remove-dialog.component';
 import {ReactiveFormsModule} from '@angular/forms';
+
+export function setupTranslateFactory(_translateService: TranslateService): Function {
+  return () => _translateService.use('pl');
+}
 
 @NgModule({
   declarations: [
@@ -47,6 +52,13 @@ import {ReactiveFormsModule} from '@angular/forms';
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
+    TranslateService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: setupTranslateFactory,
+      deps: [TranslateService],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
