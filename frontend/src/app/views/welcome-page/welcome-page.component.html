@@ -1,1 +1,20 @@
+<mat-toolbar *ngIf="!isMobile" color="primary">
+  <h1 class="site-name">CookBook</h1>
+  <!-- MENU LINKS -->
+</mat-toolbar>
 
+<mat-toolbar *ngIf="isMobile" color="primary">
+  <h1 class="site-name">CookBook</h1>
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="over" position="start">
+    Sidenav menu
+  </mat-sidenav>
+  <mat-sidenav-content>
+    Content
+  </mat-sidenav-content>
+</mat-sidenav-container>
