@@ -1,3 +1,13 @@
+$desktop-toolbar-height: 120px;
+
+.desktop-toolbar { 
+  height: $desktop-toolbar-height;
+}
+
+.mobile-toolbar { 
+  height: $desktop-toolbar-height / 2;
+}
+
 mat-sidenav { 
   width: 260px;
 }

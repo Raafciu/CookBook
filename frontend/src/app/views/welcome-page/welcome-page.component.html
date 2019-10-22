@@ -1,9 +1,9 @@
-<mat-toolbar *ngIf="!isMobile" color="primary">
+<mat-toolbar *ngIf="!isMobile" class="desktop-toolbar" color="primary">
   <h1 class="site-name">CookBook</h1>
   <!-- MENU LINKS -->
 </mat-toolbar>
 
-<mat-toolbar *ngIf="isMobile" color="primary">
+<mat-toolbar *ngIf="isMobile" class="mobile-toolbar" color="primary">
   <h1 class="site-name">CookBook</h1>
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon>menu</mat-icon>

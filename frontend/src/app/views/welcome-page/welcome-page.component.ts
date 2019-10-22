@@ -17,6 +17,9 @@ export class WelcomePageComponent {
     this.isMobile = screenWidth <= 960;
     window.onresize = () => {
       this.isMobile = window.innerWidth <= 960;
+      if (!this.isMobile) {
+        this.sidenav.close();
+      }
     };
   }
 }
