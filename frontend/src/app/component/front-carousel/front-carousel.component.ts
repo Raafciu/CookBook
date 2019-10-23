@@ -19,7 +19,9 @@ export class FrontCarouselComponent implements OnInit {
     'autoplaySpeed': 5000,
     'dots': false,
     'speed': 2000,
-    'cssEase': 'ease-in-out'
+    'cssEase': 'ease-in-out',
+    'infinite': true,
+    'draggable': false
   };
 
   constructor(private _frontCarouselService: FrontCarouselService) {
