@@ -1,11 +1,17 @@
 $desktop-toolbar-height: 120px;
+$color-white: #FFFFFF;
+$color-black: #000000;
 
 .desktop-toolbar { 
+  background: $color-white;
+  color: $color-black;
   height: $desktop-toolbar-height;
   padding: 0;
 }
 
 .mobile-toolbar { 
+  background: $color-white;
+  color: $color-black;
   height: $desktop-toolbar-height / 2;
   padding: 0;
 }
@@ -15,7 +21,7 @@ mat-sidenav {
 }
 
 mat-sidenav-content.page-content {
-  background: #FFFFFF;
+  background: $color-white;
 }
 
 app-front-carousel {
