@@ -2,12 +2,22 @@ $desktop-toolbar-height: 120px;
 
 .desktop-toolbar { 
   height: $desktop-toolbar-height;
+  padding: 0;
 }
 
 .mobile-toolbar { 
   height: $desktop-toolbar-height / 2;
+  padding: 0;
 }
 
 mat-sidenav { 
   width: 260px;
+}
+
+mat-sidenav-content.page-content {
+  background: #FFFFFF;
+}
+
+app-front-carousel {
+  width: 100%;
 }
