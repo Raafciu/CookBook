@@ -1,6 +1,7 @@
 <section class="front-carousel section">
   <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
     <div ngxSlickItem *ngFor="let slide of slides" class="front-carousel-slide slide">
+      <div class="slide-gradient"></div>
       <img src="{{ slide.img }}" alt="" width="100%">
     </div>
   </ngx-slick-carousel>
